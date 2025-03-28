@@ -7,15 +7,20 @@
 def xor_bytes(b1, b2):
     return bytes(a ^ b for a, b in zip(b1, b2))
 
-def main():
+
+def collect_input():
     str1 = input("Enter hex string 1: ")
     str2 = input("Enter hex string 2: ")
+    return bytes.fromhex(str1), bytes.fromhex(str2)
 
-    str1 = bytes.fromhex(str1)
-    str2 = bytes.fromhex(str2)
-    
-    res = xor_bytes(str1, str2)
 
+def output_results(res):
     print("xor result: ", res.hex())
+
+
+def main():
+    str1, str2 = collect_input()
+    res = xor_bytes(str1, str2)
+    output_results(res)
 
 main()

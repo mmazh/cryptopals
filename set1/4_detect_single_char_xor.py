@@ -1,13 +1,8 @@
-
 import os
 
-keys = []
-file_path =  os.path.join(os.path.abspath(os.path.dirname(__file__)), '4.txt')
 
-def xor_bytes(byte, encrypted_string):
-    key = str.encode(chr(byte) * len(encrypted_string))
-    res = bytes(a ^ b for a, b in zip(encrypted_string, key))
-    return res
+def xor_bytes(val1, val2):
+    return bytes(a ^ b for a, b in zip(val1, val2))
 
 def find_score(decrypted_string):
     score = 0
@@ -16,21 +11,30 @@ def find_score(decrypted_string):
             score += 1
     return score
 
-def score_strings(line):
-    for a in range(128):
-        res = xor_bytes(a, line)
+def score_data(data):
+    keys = []
+    for line in data:
+        for a in range(128):
+            key = str.encode(chr(a) * len(line))
+            res = xor_bytes(key, line)
+            res = res.decode("latin-1")
+            score = find_score(res)
+            keys.append((score, res))
+    return keys
 
-        # had to use latin-1 since utf-8 was throwing errors, not sure why
-        res = res.decode("latin-1")
-        score = find_score(res)
-        
-        keys.append((score, res))
 
-def main():
+def get_file_data():
+    file_path =  os.path.join(os.path.abspath(os.path.dirname(__file__)), './files/4.txt')
+    lines = []
     with open(file_path, 'r') as file:
         for line in file:
-            line = bytes.fromhex(line)
-            score_strings(line)
+            lines.append(bytes.fromhex(line))
+    return lines
+
+
+def main():
+    data_lines = get_file_data()
+    keys = score_data(data_lines)
     result = sorted(keys,key=lambda x: x[0], reverse=True)[0][1]
     print(result)
 

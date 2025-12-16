@@ -38,4 +38,5 @@ def main():
     output_results(identical_blocks_data)
 
 
-main()
+if __name__ == "__main__":
+    main()

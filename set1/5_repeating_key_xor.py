@@ -33,4 +33,5 @@ def main():
     output_results(ciphertext)
     
 
-main()
+if __name__ == "__main__":
+    main()

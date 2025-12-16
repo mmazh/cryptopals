@@ -38,4 +38,6 @@ def main():
     result = sorted(keys,key=lambda x: x[0], reverse=True)[0][1]
     print(result)
 
-main()
+
+if __name__ == "__main__":
+    main()

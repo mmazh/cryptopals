@@ -23,4 +23,6 @@ def main():
     res = xor_bytes(str1, str2)
     output_results(res)
 
-main()
+
+if __name__ == "__main__":
+    main()

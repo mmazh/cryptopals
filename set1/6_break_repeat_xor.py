@@ -120,4 +120,5 @@ def main():
     output_results(plaintext, key_guess[:key_size_guess])
 
 
-main()
+if __name__ == "__main__":
+    main()

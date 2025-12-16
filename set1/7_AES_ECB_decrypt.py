@@ -24,4 +24,5 @@ def main():
     output_results(data)
 
 
-main()
+if __name__ == "__main__":
+    main()

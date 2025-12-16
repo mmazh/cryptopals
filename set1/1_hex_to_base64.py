@@ -20,4 +20,5 @@ def main():
     output_results(b64_encoded_data)
     
 
-main()
+if __name__ == "__main__":
+    main()
